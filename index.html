@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#000000">
+<title>Angel Nicole B. Cinto — Portfolio</title>
+<meta name="description" content="Portfolio of Angel Nicole B. Cinto, 3rd year BS Information Technology student at Eastern Samar State University, specializing in systems and networking.">
+
+<!--
+  HOW TO EDIT
+  - Pictures go in a folder named "images" next to this file:
+      images/profile.jpg        (sidebar photo, square works best)
+      images/qgis-project.jpg   (QGIS project screenshot)
+      images/task-manager.jpg   (Task Management System screenshot)
+  - Colors and fonts are the variables at the top of the <style> block.
+  - To add a project, skill, or school, copy an existing block and change the text.
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --black: #000000;
+    --yellow: #FFFF00;
+    --gray: #898989;
+    --white: #FFFFFF;
+    --line: rgba(137, 137, 137, 0.45);
+    --display: "Barlow Condensed", "Arial Narrow", Arial, sans-serif;
+    --body: "Barlow", Arial, sans-serif;
+    --side: 270px;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { transition: none !important; }
+  }
+
+  body { margin: 0; background: var(--black); color: var(--white); font-family: var(--body); font-size: 1.05rem; line-height: 1.65; }
+  a { color: var(--yellow); }
+  a:focus-visible, .btn:focus-visible { outline: 3px solid var(--yellow); outline-offset: 3px; }
+  h1, h2, h3 { font-family: var(--display); font-weight: 700; line-height: 1; margin: 0; }
+  ul { list-style: none; padding: 0; margin: 0; }
+
+  .skip { position: absolute; left: -999px; top: 0; background: var(--yellow); color: var(--black); padding: .7rem 1.2rem; font-weight: 600; z-index: 10; }
+  .skip:focus { left: 1rem; top: 1rem; }
+
+  /* ===== Layout: sidebar | hazard stripe | content ===== */
+  .layout { display: grid; grid-template-columns: var(--side) 16px 1fr; min-height: 100vh; }
+
+  .side { position: sticky; top: 0; height: 100vh; overflow-y: auto; padding: 2.25rem 1.5rem 2rem 1.75rem; display: flex; flex-direction: column; gap: 1.25rem; }
+  .photo { width: 200px; height: 200px; object-fit: cover; border: 3px solid var(--yellow); color: var(--gray); font-size: .8rem; }
+  .degree { margin: 0; color: var(--gray); font-size: .98rem; line-height: 1.4; }
+  .degree strong { display: block; color: var(--white); font-weight: 600; }
+
+  nav { display: flex; flex-direction: column; gap: .15rem; margin-top: .75rem; }
+  .tab { font-family: var(--display); font-size: 1.3rem; font-weight: 600; color: var(--white); text-decoration: none; padding: .35rem .8rem; border-left: 4px solid transparent; transition: border-color .15s, color .15s; }
+  .tab:hover { border-left-color: var(--gray); }
+  .tab.active { color: var(--yellow); border-left-color: var(--yellow); }
+
+  /* The signature: hazard tape running down the edge */
+  .stripe { position: sticky; top: 0; height: 100vh; background: repeating-linear-gradient(45deg, var(--yellow) 0 12px, var(--black) 12px 24px); }
+
+  main { min-width: 0; }
+  section { padding: 5.5rem 4rem; max-width: 960px; border-bottom: 1px solid var(--line); }
+  section:last-of-type { border-bottom: none; }
+
+  .sec-title { font-size: clamp(2.4rem, 5vw, 3.2rem); margin-bottom: 2.25rem; }
+  .sec-title::after { content: ""; display: block; width: 56px; height: 6px; background: var(--yellow); margin-top: .8rem; }
+
+  /* ===== Hero ===== */
+  .hero { padding-top: 6.5rem; }
+  .hero h1 { font-size: clamp(3.6rem, 9vw, 7rem); line-height: .92; }
+  .facts { display: flex; flex-wrap: wrap; gap: .6rem; margin: 1.75rem 0 1.5rem; }
+  .fact { font-family: var(--display); font-weight: 700; font-size: 1.3rem; line-height: 1; padding: .35rem .8rem; border: 2px solid var(--yellow); }
+  .fact.solid { background: var(--yellow); color: var(--black); }
+  .tagline { max-width: 44ch; font-size: 1.2rem; margin: 0; }
+  .hero-links { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 2.25rem; }
+  .btn { display: inline-block; padding: .8rem 1.5rem; font-weight: 600; text-decoration: none; border: 2px solid var(--yellow); transition: background .15s, color .15s; }
+  .btn.solid { background: var(--yellow); color: var(--black); }
+  .btn:hover { background: var(--white); border-color: var(--white); color: var(--black); }
+
+  /* ===== About ===== */
+  .about p { max-width: 62ch; margin: 0; }
+  .about p + p { margin-top: 1rem; }
+
+  /* ===== Skills ===== */
+  .skills { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 1rem; }
+  .skills li { font-family: var(--display); font-weight: 600; font-size: 1.5rem; line-height: 1.1; padding: 1rem 1.1rem; border: 1px solid var(--line); border-left: 6px solid var(--yellow); }
+
+  /* ===== Projects ===== */
+  .projects { display: grid; gap: 2rem; }
+  .project { display: grid; grid-template-columns: 280px 1fr; border: 1px solid var(--line); }
+  .project img { width: 100%; height: 100%; min-height: 220px; object-fit: cover; display: block; background: var(--line); color: var(--gray); }
+  .project .body { padding: 1.75rem; }
+  .project h3 { font-size: 2rem; margin-bottom: .7rem; }
+  .project p { margin: 0; max-width: 58ch; }
+  .tags { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1.1rem; }
+  .tag { border: 1px solid var(--yellow); color: var(--yellow); padding: .1rem .65rem; font-size: .9rem; }
+
+  /* ===== Education timeline (a real sequence, newest first) ===== */
+  .timeline { border-left: 3px solid var(--line); margin-left: 6px; display: grid; gap: 2rem; }
+  .step { position: relative; padding-left: 2rem; }
+  .step::before { content: ""; position: absolute; left: -10px; top: .25rem; width: 17px; height: 17px; background: var(--black); border: 3px solid var(--gray); }
+  .step.now::before { background: var(--yellow); border-color: var(--yellow); }
+  .step .when { color: var(--gray); font-size: .95rem; }
+  .step h3 { font-size: 1.7rem; margin: .1rem 0 .2rem; }
+  .step .where { margin: 0; }
+  .now-tag { display: inline-block; margin-left: .6rem; background: var(--yellow); color: var(--black); font-family: var(--display); font-size: 1.05rem; font-weight: 700; padding: 0 .55rem; vertical-align: middle; }
+
+  /* ===== Contact ===== */
+  .contact > p { max-width: 46ch; margin: 0 0 1.75rem; }
+  .contact-row { display: grid; grid-template-columns: 120px 1fr; align-items: baseline; gap: 1rem; padding: 1.1rem 0; border-top: 1px solid var(--line); }
+  .contact-row:last-child { border-bottom: 1px solid var(--line); }
+  .contact-row span { color: var(--gray); }
+  .contact-row a { font-family: var(--display); font-size: clamp(1.4rem, 3.5vw, 2rem); font-weight: 600; word-break: break-word; }
+
+  footer { padding: 2rem 4rem 3rem; color: var(--gray); font-size: .9rem; }
+
+  /* ===== Mobile ===== */
+  @media (max-width: 860px) {
+    .layout { grid-template-columns: 1fr; }
+    .side { position: static; height: auto; overflow: visible; display: grid; grid-template-columns: auto 1fr; align-items: center; gap: .5rem 1rem; padding: 1.25rem 1.25rem 1rem; }
+    .photo { width: 76px; height: 76px; }
+    nav { grid-column: 1 / -1; flex-direction: row; overflow-x: auto; margin-top: .25rem; }
+    .tab { padding: .3rem .8rem; border-left: none; border-bottom: 4px solid transparent; }
+    .tab:hover { border-bottom-color: var(--gray); }
+    .tab.active { border-bottom-color: var(--yellow); }
+    .stripe { position: static; height: 14px; }
+    section { padding: 3.5rem 1.25rem; }
+    .hero { padding-top: 3.5rem; }
+    footer { padding: 1.5rem 1.25rem 2.5rem; }
+    .project { grid-template-columns: 1fr; }
+    .project img { min-height: 0; height: 200px; }
+    .contact-row { grid-template-columns: 1fr; gap: .1rem; }
+  }
+</style>
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<div class="layout">
+
+  <header class="side">
+    <img class="photo" src="images/profile.jpg" alt="Portrait of Angel Nicole Cinto">
+    <p class="degree"><strong>BS Information Technology</strong>Eastern Samar State University</p>
+    <nav aria-label="Sections">
+      <a class="tab" href="#top">Home</a>
+      <a class="tab" href="#about">About</a>
+      <a class="tab" href="#skills">Skills</a>
+      <a class="tab" href="#projects">Projects</a>
+      <a class="tab" href="#education">Education</a>
+      <a class="tab" href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <div class="stripe" aria-hidden="true"></div>
+
+  <main id="main">
+
+    <section class="hero" id="top">
+      <h1>Angel Nicole<br>B. Cinto</h1>
+      <div class="facts">
+        <span class="fact solid">Systems &amp; Networking</span>
+        <span class="fact">3rd year IT student</span>
+      </div>
+      <p class="tagline">BS Information Technology student at Eastern Samar State University, with hands-on work in networking, web development, and QGIS mapping.</p>
+      <div class="hero-links">
+        <a class="btn solid" href="mailto:angelnicolecinto69@gmail.com">Send an email</a>
+        <a class="btn" href="https://www.facebook.com/angel.cinto.851866" target="_blank" rel="noopener">Find me on Facebook</a>
+      </div>
+    </section>
+
+    <section class="about" id="about">
+      <h2 class="sec-title">About</h2>
+      <p>I'm very willing to learn, and I'll take on any task that needs to be done. I care about getting things right, so it hits me hard when I can't.</p>
+      <p>I study hard for every subject, even when it doesn't all sink in at once. I'm still growing, and once I graduate and start working, I'm aiming for a high-paying career.</p>
+    </section>
+
+    <section id="skills">
+      <h2 class="sec-title">Skills</h2>
+      <ul class="skills">
+        <li>HTML</li>
+        <li>CSS</li>
+        <li>JavaScript</li>
+        <li>C++</li>
+        <li>Networking</li>
+        <li>QGIS Mapping</li>
+        <li>Web Developing</li>
+      </ul>
+    </section>
+
+    <section id="projects">
+      <h2 class="sec-title">Projects</h2>
+      <div class="projects">
+
+        <article class="project">
+          <img src="images/qgis-project.jpg" alt="QGIS map of boarding houses in Brgy. Tabunan, Borongan City">
+          <div class="body">
+            <h3>Boarding House Hazard Map</h3>
+            <p>A QGIS mapping project for Brgy. Tabunan, Borongan City, Eastern Samar. It plots the boarding houses in the barangay and checks each one against hazardous areas, showing which are within range and which are safely outside. The result helps students, landlords, and local planners see where the risks are.</p>
+            <div class="tags">
+              <span class="tag">QGIS</span>
+              <span class="tag">GIS mapping</span>
+              <span class="tag">Hazard analysis</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="project">
+          <img src="images/task-manager.jpg" alt="Screenshot of the Task Management System">
+          <div class="body">
+            <h3>Task Management System</h3>
+            <p>A web-based system that keeps daily work in one place. Users can create, view, edit, and delete tasks, group them into categories to stay organized, and check the status of each task at a glance so nothing gets missed.</p>
+            <div class="tags">
+              <span class="tag">Web application</span>
+              <span class="tag">Task management</span>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <section id="education">
+      <h2 class="sec-title">Education</h2>
+      <div class="timeline">
+
+        <div class="step now">
+          <span class="when">2026 – 2027</span>
+          <h3>BS Information Technology, 3rd Year<span class="now-tag">Current</span></h3>
+          <p class="where">Eastern Samar State University</p>
+        </div>
+
+        <div class="step">
+          <span class="when">2025 – 2026</span>
+          <h3>BS Information Technology, 2nd Year</h3>
+          <p class="where">Eastern Samar State University</p>
+        </div>
+
+        <div class="step">
+          <span class="when">2024 – 2025</span>
+          <h3>BS Information Technology, 1st Year</h3>
+          <p class="where">Eastern Samar State University</p>
+        </div>
+
+        <div class="step">
+          <h3>Senior High School</h3>
+          <p class="where">Llorente National High School</p>
+        </div>
+
+        <div class="step">
+          <h3>Junior High School</h3>
+          <p class="where">Llorente National High School</p>
+        </div>
+
+        <div class="step">
+          <h3>Elementary</h3>
+          <p class="where">Minaanod Elementary School</p>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <h2 class="sec-title">Contact</h2>
+      <p>Have a project, a question, or an opportunity? Send an email or message me on Facebook.</p>
+      <div class="contact-row">
+        <span>Email</span>
+        <a href="mailto:angelnicolecinto69@gmail.com">angelnicolecinto69@gmail.com</a>
+      </div>
+      <div class="contact-row">
+        <span>Facebook</span>
+        <a href="https://www.facebook.com/angel.cinto.851866" target="_blank" rel="noopener">facebook.com/angel.cinto.851866</a>
+      </div>
+    </section>
+
+    <footer>© 2026 Angel Nicole B. Cinto</footer>
+
+  </main>
+</div>
+
+<script>
+  // Highlight the sidebar link for the section currently on screen
+  const tabs = document.querySelectorAll(".tab");
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      tabs.forEach((tab) => {
+        const on = tab.getAttribute("href") === "#" + entry.target.id;
+        tab.classList.toggle("active", on);
+        if (on) tab.setAttribute("aria-current", "true");
+        else tab.removeAttribute("aria-current");
+      });
+    });
+  }, { rootMargin: "-40% 0px -55% 0px" });
+  document.querySelectorAll("main section").forEach((s) => observer.observe(s));
+</script>
+
+</body>
+</html>
